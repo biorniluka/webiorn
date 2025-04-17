@@ -22,9 +22,6 @@
             padding: 15px;
             margin-bottom: 20px;
             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
         }
 
         .reserve-btn {
@@ -114,13 +111,11 @@
             justify-content: center;
             align-items: center;
             position: relative;
-            width: 100%;
-            max-width: 400px;
         }
 
         .gallery-img {
             max-width: 100%;
-            max-height: 300px;
+            max-height: 400px;
             display: none;
         }
 
@@ -174,7 +169,7 @@
     <header class="main-header">
         <div class="header-container">
             <a href="/" class="logo">
-                <img src="https://github.com/biorniluka/webiorn/blob/main/public/images/logo.jpg?raw=true" alt="Rent a Car Luka">
+                <img src="/public/images/logo.jpg" alt="Rent a Car Luka">
             </a>
             <nav class="main-nav">
                 <ul>
@@ -260,132 +255,129 @@
 
     <script>
         const cars = [
-            { name: "PORSCHE", brand: "PORSCHE", type: "CAYENNE", year: 2022 },
-            { name: "AUDI", type: "A3", year: 2013 },
-            { name: "AUDI", type: "A3", year: 2011 },
-            { name: "VOLKSWAGEN", type: "GOLF 6+" },
-            { name: "VOLKSWAGEN", type: "GOLF 5" },
-            { name: "VOLKSWAGEN", type: "GOLF 7" },
-            { name: "MERCEDES", type: "M CLASS", year: 2019 },
-            { name: "VOLKSWAGEN", type: "TOUAREG" },
+            { name: "PORSCHE", brand: "PORSCHE", type: "CAYENE", year: 2015, price: 75, rating: 4.9 },
+            { name: "MERCEDES-BENZ", brand: "MERCEDES-BENZ", type: "ML", year: 2015, price: 70, rating: 4.9 },
+            { name: "VOLKSWAGEN", brand: "VOLKSWAGEN", type: "TOUAREG", year: 2014, price: 65, rating: 4.8 },
+            { name: "AUDI", brand: "AUDI", type: "A6", year: 2014, price: 60, rating: 4.7 },
+            { name: "VOLKSWAGEN", brand: "VOLKSWAGEN", type: "GOLF 7", year: 2016, price: 40, rating: 4.8 },
+            { name: "VOLKSWAGEN", brand: "VOLKSWAGEN", type: "GOLF 6", year: 2012, price: 30, rating: 4.7 },
+            { name: "AUDI", brand: "AUDI", type: "A3", year: 2011, price: 28, rating: 4.5 },
+            { name: "AUDI", brand: "AUDI", type: "A3", year: 2013, price: 35, rating: 4.7 },
+            { name: "VOLKSWAGEN", brand: "VOLKSWAGEN", type: "GOLF 6+", year: 2010, price: 28, rating: 4.0 },
+            { name: "VOLKSWAGEN", brand: "VOLKSWAGEN", type: "GOLF 5", year: 2010, price: 28, rating: 3.9 },
         ];
 
-        function renderCars(cars) {
+        function renderCars(carList) {
             const carListContainer = document.getElementById("carList");
+            carListContainer.innerHTML = ""; // Clear existing cars
 
-            cars.forEach(car => {
-                let imagePaths = [];
-                if (car.name === "AUDI" && car.type === "A3" && car.year === 2011) {
+            carList.forEach((car) => {
+                const carItem = document.createElement("div");
+                carItem.classList.add("car-item");
+
+                let imagePaths;
+                if (car.name === "PORSCHE") {
                     imagePaths = [
-                        "https://github.com/biorniluka/webiorn/blob/main/public/images/audi_a3_2011_1.jpg?raw=true",
-                        "https://github.com/biorniluka/webiorn/blob/main/public/images/audi_a3_2011_2.jpg?raw=true",
-                        "https://github.com/biorniluka/webiorn/blob/main/public/images/audi_a3_2011_3.jpg?raw=true"
+                        "/public/images/porsche_1.jpg",
+                        "/public/images/porsche_2.jpg",
+                        "/public/images/porsche_3.jpg"
+                    ];
+                } else if (car.name === "MERCEDES-BENZ") {
+                    imagePaths = [
+                        "/public/images/mercedes_1.jpg",
+                        "/public/images/mercedes_2.jpg",
+                        "/public/images/mercedes_3.jpg"
+                    ];
+                } else if (car.name === "VOLKSWAGEN" && car.type === "TOUAREG") {
+                    imagePaths = [
+                        "/public/images/touareg_1.jpg",
+                        "/public/images/touareg_2.jpg",
+                        "/public/images/touareg_3.jpg"
+                    ];
+                } else if (car.name === "AUDI" && car.type === "A3" && car.year === 2011) {
+                    imagePaths = [
+                        "/public/images/audi_a3_2011_1.jpg",
+                        "/public/images/audi_a3_2011_2.jpg",
+                        "/public/images/audi_a3_2011_3.jpg"
                     ];
                 } else if (car.name === "AUDI" && car.type === "A3" && car.year === 2013) {
                     imagePaths = [
-                        "https://github.com/biorniluka/webiorn/blob/main/public/images/audi_a3_2013_1.jpg?raw=true",
-                        "https://github.com/biorniluka/webiorn/blob/main/public/images/audi_a3_2013_2.jpg?raw=true",
-                        "https://github.com/biorniluka/webiorn/blob/main/public/images/audi_a3_2013_3.jpg?raw=true"
+                        "/public/images/audi_a3_2013_1.jpg",
+                        "/public/images/audi_a3_2013_2.jpg",
+                        "/public/images/audi_a3_2013_3.jpg"
+                    ];
+                } else if (car.name === "AUDI" && car.type === "A6") {
+                    imagePaths = [
+                        "/public/images/audi_a6_1.jpg",
+                        "/public/images/audi_a6_2.jpg",
+                        "/public/images/audi_a6_3.jpg"
+                    ];
+                } else if (car.name === "VOLKSWAGEN" && car.type === "GOLF 5") {
+                    imagePaths = [
+                        "/public/images/golf5_1.jpg",
+                        "/public/images/golf5_2.jpg",
+                        "/public/images/golf5_3.jpg"
+                    ];
+                } else if (car.name === "VOLKSWAGEN" && car.type === "GOLF 6") {
+                    imagePaths = [
+                        "/public/images/golf6_1.jpg",
+                        "/public/images/golf6_2.jpg",
+                        "/public/images/golf6_3.jpg"
+                    ];
+                } else if (car.name === "VOLKSWAGEN" && car.type === "GOLF 6+") {
+                    imagePaths = [
+                        "/public/images/golf6plus_1.jpg",
+                        "/public/images/golf6plus_2.jpg",
+                        "/public/images/golf6plus_3.jpg"
                     ];
                 } else if (car.name === "VOLKSWAGEN" && car.type === "GOLF 7") {
                     imagePaths = [
-                        "https://github.com/biorniluka/webiorn/blob/main/public/images/golf7_1.jpg?raw=true",
-                        "https://github.com/biorniluka/webiorn/blob/main/public/images/golf7_2.jpg?raw=true",
-                        "https://github.com/biorniluka/webiorn/blob/main/public/images/golf7_3.jpg?raw=true"
+                        "/public/images/golf7_1.jpg",
+                        "/public/images/golf7_2.jpg",
+                        "/public/images/golf7_3.jpg"
                     ];
                 }
 
-                const carItem = document.createElement("div");
-                carItem.classList.add("car-card");
-
-                const carTitle = document.createElement("h3");
-                carTitle.textContent = `${car.name} ${car.type} (${car.year || "N/A"})`;
-                carItem.appendChild(carTitle);
-
-                const carDescription = document.createElement("p");
-                carDescription.textContent = "Makina luksoze për çdo udhëtim.";
-                carItem.appendChild(carDescription);
-
-                const carImageContainer = document.createElement("div");
-                carImageContainer.classList.add("car-gallery");
-
-                const galleryContainer = document.createElement("div");
-                galleryContainer.classList.add("gallery-container");
-
-                imagePaths.forEach((path, index) => {
-                    const img = document.createElement("img");
-                    img.src = path;
-                    img.classList.add("gallery-img");
-                    if (index === 0) img.classList.add("active");
-                    galleryContainer.appendChild(img);
-                });
-
-                carItem.appendChild(galleryContainer);
-
-                const prevBtn = document.createElement("button");
-                prevBtn.classList.add("gallery-nav", "prev");
-                prevBtn.innerHTML = "<i class='fas fa-chevron-left'></i>";
-                carItem.appendChild(prevBtn);
-
-                const nextBtn = document.createElement("button");
-                nextBtn.classList.add("gallery-nav", "next");
-                nextBtn.innerHTML = "<i class='fas fa-chevron-right'></i>";
-                carItem.appendChild(nextBtn);
-
-                const galleryDots = document.createElement("div");
-                galleryDots.classList.add("gallery-dots");
-
-                imagePaths.forEach((_, index) => {
-                    const dot = document.createElement("div");
-                    dot.classList.add("dot");
-                    if (index === 0) dot.classList.add("active");
-                    galleryDots.appendChild(dot);
-                });
-
-                carItem.appendChild(galleryDots);
-
-                prevBtn.addEventListener("click", () => {
-                    showPreviousImage(galleryContainer, galleryDots);
-                });
-
-                nextBtn.addEventListener("click", () => {
-                    showNextImage(galleryContainer, galleryDots);
-                });
+                carItem.innerHTML = `
+                    <div class="car-gallery">
+                        <div class="gallery-container">
+                            <img src="${imagePaths[0]}" alt="${car.name} ${car.type}" class="gallery-img active">
+                            <img src="${imagePaths[1]}" alt="${car.name} ${car.type}" class="gallery-img">
+                            <img src="${imagePaths[2]}" alt="${car.name} ${car.type}" class="gallery-img">
+                            <button class="gallery-nav prev">‹</button>
+                            <button class="gallery-nav next">›</button>
+                        </div>
+                        <div class="gallery-dots">
+                            <div class="dot active"></div>
+                            <div class="dot"></div>
+                            <div class="dot"></div>
+                        </div>
+                    </div>
+                    <div class="car-info">
+                        <h3>${car.name} ${car.type} (${car.year})</h3>
+                        <p><strong>Çmimi:</strong> €${car.price} për ditë</p>
+                        <p><strong>Vlerësimi:</strong> ${car.rating} / 5</p>
+                        <button class="reserve-btn" onclick="openReservationModal('${car.name} ${car.type}')">
+                            Rezervo <i class="fas fa-calendar-check"></i>
+                        </button>
+                    </div>
+                `;
 
                 carListContainer.appendChild(carItem);
             });
         }
 
-        function showPreviousImage(galleryContainer, galleryDots) {
-            const images = galleryContainer.querySelectorAll(".gallery-img");
-            const dots = galleryDots.querySelectorAll(".dot");
-            let currentIndex = Array.from(images).findIndex(img => img.classList.contains("active"));
-
-            images[currentIndex].classList.remove("active");
-            dots[currentIndex].classList.remove("active");
-
-            currentIndex = (currentIndex - 1 + images.length) % images.length;
-
-            images[currentIndex].classList.add("active");
-            dots[currentIndex].classList.add("active");
-        }
-
-        function showNextImage(galleryContainer, galleryDots) {
-            const images = galleryContainer.querySelectorAll(".gallery-img");
-            const dots = galleryDots.querySelectorAll(".dot");
-            let currentIndex = Array.from(images).findIndex(img => img.classList.contains("active"));
-
-            images[currentIndex].classList.remove("active");
-            dots[currentIndex].classList.remove("active");
-
-            currentIndex = (currentIndex + 1) % images.length;
-
-            images[currentIndex].classList.add("active");
-            dots[currentIndex].classList.add("active");
-        }
-
-        // Initially render cars
         renderCars(cars);
+
+        function openReservationModal(carName) {
+            const modal = document.getElementById('reservationModal');
+            modal.style.display = 'flex';
+            document.getElementById('carName').innerText = carName;
+        }
+
+        function closeReservationModal() {
+            document.getElementById('reservationModal').style.display = 'none';
+        }
     </script>
 </body>
 </html>
