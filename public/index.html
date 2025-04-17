@@ -15,7 +15,7 @@
             padding: 20px;
             background-color: #000000;
         }
-        
+
         .car-card {
             background: white;
             border-radius: 8px;
@@ -23,7 +23,7 @@
             margin-bottom: 20px;
             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
         }
-        
+
         .reserve-btn {
             background: #25D366;
             color: white;
@@ -36,11 +36,11 @@
             align-items: center;
             gap: 8px;
         }
-        
+
         .reserve-btn:hover {
             background: #128C7E;
         }
-        
+
         /* Modal Stilizimi */
         .modal {
             display: none;
@@ -54,7 +54,7 @@
             align-items: center;
             z-index: 1000;
         }
-        
+
         .modal-content {
             background: white;
             padding: 25px;
@@ -62,17 +62,17 @@
             width: 90%;
             max-width: 500px;
         }
-        
+
         .form-group {
             margin-bottom: 15px;
         }
-        
+
         .form-group label {
             display: block;
             margin-bottom: 5px;
             font-weight: bold;
         }
-        
+
         .form-group input, 
         .form-group select,
         .form-group textarea {
@@ -82,7 +82,7 @@
             border-radius: 5px;
             box-sizing: border-box;
         }
-        
+
         .submit-btn {
             background: #25D366;
             color: white;
@@ -94,11 +94,73 @@
             font-size: 16px;
             margin-top: 10px;
         }
-        
+
         .close-btn {
             float: right;
             font-size: 22px;
             cursor: pointer;
+        }
+
+        /* Additional car gallery styles */
+        .car-gallery {
+            position: relative;
+        }
+
+        .gallery-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        .gallery-img {
+            max-width: 100%;
+            max-height: 400px;
+            display: none;
+        }
+
+        .gallery-img.active {
+            display: block;
+        }
+
+        .gallery-nav {
+            position: absolute;
+            top: 50%;
+            z-index: 10;
+            background: rgba(0,0,0,0.5);
+            color: white;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+        }
+
+        .gallery-nav.prev {
+            left: 10px;
+        }
+
+        .gallery-nav.next {
+            right: 10px;
+        }
+
+        .gallery-dots {
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+        }
+
+        .dot {
+            width: 10px;
+            height: 10px;
+            background-color: rgba(0,0,0,0.5);
+            border-radius: 50%;
+            margin: 0 5px;
+            cursor: pointer;
+        }
+
+        .dot.active {
+            background-color: white;
         }
     </style>
 </head>
@@ -107,7 +169,7 @@
     <header class="main-header">
         <div class="header-container">
             <a href="/" class="logo">
-                <img src="/images/logo.jpg" alt="Rent a Car Luka">
+                <img src="/public/images/logo.jpg" alt="Rent a Car Luka">
             </a>
             <nav class="main-nav">
                 <ul>
@@ -122,7 +184,7 @@
 
     <!-- Hero Section -->
     <section class="hero">
-            <div class="hero-content">
+        <div class="hero-content">
             <h1>Rent a Car Luka</h1>
             <p>Eksperiencën më të mirë të makinave me qira në Shqipëri. Cilësi premium, çmime konkurruese.</p>
             <a href="#cars" class="btn">Shiko Makinat <i class="fas fa-arrow-right"></i></a>
@@ -134,314 +196,152 @@
         <div class="section-title">
             <h2>Koleksioni Ynë I Makinave</h2>
             <p>Zgjidhni makinën perfekte për nevojat tuaja nga koleksioni ynë i kujdesshëm</p>
-            </div>
+        </div>
 
-            <div class="filters">
-                <div class="filter-group">
+        <div class="filters">
+            <div class="filter-group">
                 <label for="sortFilter"><i class="fas fa-sort"></i> Rendit sipas:</label>
                 <select id="sortFilter">
                     <option value="default">Të gjitha</option>
                     <option value="price-asc">Çmimi: Nga më i ulëti</option>
                     <option value="price-desc">Çmimi: Nga më i larti</option>
                     <option value="rating">Vlerësimi më i lartë</option>
-                    </select>
-                </div>
-
-                </div>
+                </select>
             </div>
+        </div>
 
         <div class="car-list" id="carList">
             <!-- Cars will be loaded dynamically -->
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-column">
+                <h3>Rreth Nesh</h3>
+                <p>Rent a Car Luka është zgjedhja juaj e parë për makinat me qira në Shqipëri. Ne ofrojmë shërbim premium dhe makina të klasit të lartë.</p>
             </div>
-        </section>
 
-<footer>
-  <div class="footer-content">
-    <div class="footer-column">
-      <h3>Rreth Nesh</h3>
-      <p>Rent a Car Luka është zgjedhja juaj e parë për makinat me qira në Shqipëri. Ne ofrojmë shërbim premium dhe makina të klasit të lartë.</p>
-    </div>
+            <div class="footer-column">
+                <h3>Kontakti</h3>
+                <p><i class="fas fa-map-marker-alt"></i> Tirana, Shqipëri</p>
+                <p><i class="fas fa-phone"></i> +355684055754</p>
+                <p><i class="fas fa-envelope"></i> info@rentacarluka.com</p>
+                <p><i class="fas fa-clock"></i> 24/7 Shërbim</p>
+            </div>
 
-    <div class="footer-column">
-      <h3>Kontakti</h3>
-      <p><i class="fas fa-map-marker-alt"></i> Tirana, Shqipëri</p>
-      <p><i class="fas fa-phone"></i> +355684055754</p>
-      <p><i class="fas fa-envelope"></i> info@rentacarluka.com</p>
-      <p><i class="fas fa-clock"></i> 24/7 Shërbim</p>
-    </div>
+            <div class="footer-column">
+                <h3>Social Media</h3>
+                <a href="https://www.tiktok.com/@rent_a_car_luka" target="_blank"><i class="fab fa-tiktok"></i> TikTok</a><br>
+                <a href="https://www.instagram.com/_rent_a_car_luka" target="_blank"><i class="fab fa-instagram"></i> Instagram</a><br>
+                <a href="https://wa.me/355684055754" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+            </div>
 
-    <div class="footer-column">
-      <h3>Social Media</h3>
-      <a href="https://www.tiktok.com/@rent_a_car_luka" target="_blank"><i class="fab fa-tiktok"></i> TikTok</a><br>
-      <a href="https://www.instagram.com/_rent_a_car_luka" target="_blank"><i class="fab fa-instagram"></i> Instagram</a><br>
-      <a href="https://wa.me/355684055754" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a>
-    </div>
+            <div class="footer-column">
+                <h3>Na Gjeni Këtu</h3>
+                <div class="map-container" style="width: 100%; height: 150px;">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2994.0639610517044!2d19.818889415684384!3d41.32754697927039"
+                            width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"
+                            referrerpolicy="no-referrer-when-downgrade">
+                    </iframe>
+                </div>
+            </div>
+        </div>
 
-    <div class="footer-column">
-      <h3>Na Gjeni Këtu</h3>
-      <div class="map-container" style="width: 100%; height: 150px;">
-        <iframe
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2994.0639610517044!2d19.818889415684384!3d41.32754697927039"
-          width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"
-          referrerpolicy="no-referrer-when-downgrade">
-        </iframe>
-      </div>
-    </div>
-  </div>
-
-  <div class="copyright">
-    <p>&copy; 2025 Rent a Car Luka. Të gjitha të drejtat e rezervuara.</p>
-  </div>
-</footer>
-
-
+        <div class="copyright">
+            <p>&copy; 2025 Rent a Car Luka. Të gjitha të drejtat e rezervuara.</p>
+        </div>
+    </footer>
 
     <script>
-        // Example car data
         const cars = [
-          { name: "PORSCHE", brand: "PORSCHE", type: "CAYENE", year: 2015, price: 75, rating: 4.9 },
-          { name: "MERCEDES-BENZ", brand: "MERCEDES-BENZ", type: "ML", year: 2015, price: 70, rating: 4.9 },
-          { name: "VOLKSWAGEN", brand: "VOLKSWAGEN", type: "TOUAREG", year: 2014, price: 65, rating: 4.8 },
-          { name: "AUDI", brand: "AUDI", type: "A6", year: 2014, price: 60, rating: 4.7 },
-          { name: "VOLKSWAGEN", brand: "VOLKSWAGEN", type: "GOLF 7", year: 2016, price: 40, rating: 4.8 },
-          { name: "VOLKSWAGEN", brand: "VOLKSWAGEN", type: "GOLF 6", year: 2012, price: 30, rating: 4.7 },
-          { name: "AUDI", brand: "AUDI", type: "A3", year: 2011, price: 28, rating: 4.5 },
-          { name: "AUDI", brand: "AUDI", type: "A3", year: 2013, price: 35, rating: 4.7 },
-          { name: "VOLKSWAGEN", brand: "VOLKSWAGEN", type: "GOLF 6+", year: 2010, price: 28, rating: 4.0 },
-          { name: "VOLKSWAGEN", brand: "VOLKSWAGEN", type: "GOLF 5", year: 2010, price: 28, rating: 3.9 },
+            { name: "PORSCHE", brand: "PORSCHE", type: "CAYENE", year: 2015, price: 75, rating: 4.9 },
+            { name: "MERCEDES-BENZ", brand: "MERCEDES-BENZ", type: "ML", year: 2015, price: 70, rating: 4.9 },
+            { name: "VOLKSWAGEN", brand: "VOLKSWAGEN", type: "TOUAREG", year: 2014, price: 65, rating: 4.8 },
+            { name: "AUDI", brand: "AUDI", type: "A6", year: 2014, price: 60, rating: 4.7 },
+            { name: "VOLKSWAGEN", brand: "VOLKSWAGEN", type: "GOLF 7", year: 2016, price: 40, rating: 4.8 },
+            { name: "VOLKSWAGEN", brand: "VOLKSWAGEN", type: "GOLF 6", year: 2012, price: 30, rating: 4.7 },
+            { name: "AUDI", brand: "AUDI", type: "A3", year: 2011, price: 28, rating: 4.5 },
+            { name: "AUDI", brand: "AUDI", type: "A3", year: 2013, price: 35, rating: 4.7 },
+            { name: "VOLKSWAGEN", brand: "VOLKSWAGEN", type: "GOLF 6+", year: 2010, price: 28, rating: 4.0 },
+            { name: "VOLKSWAGEN", brand: "VOLKSWAGEN", type: "GOLF 5", year: 2010, price: 28, rating: 3.9 },
         ];
 
-        // Function to render cars
         function renderCars(carList) {
-          const carListContainer = document.getElementById("carList");
-          carListContainer.innerHTML = ""; // Clear existing cars
+            const carListContainer = document.getElementById("carList");
+            carListContainer.innerHTML = ""; // Clear existing cars
 
-          carList.forEach((car) => {
-            const carItem = document.createElement("div");
-            carItem.classList.add("car-item");
+            carList.forEach((car) => {
+                const carItem = document.createElement("div");
+                carItem.classList.add("car-item");
 
-            // Get image paths based on car name
-            let imagePaths;
-            if (car.name === "PORSCHE") {
-              imagePaths = [
-                "/public/images/porsche_1.jpg",
-                "/images/porsche_2.jpg",
-                "/images/porsche_3.jpg"
-              ];
-            } else if (car.name === "MERCEDES-BENZ") {
-              imagePaths = [
-                "/images/mercedes_1.jpg",
-                "/images/mercedes_2.jpg",
-                "/images/mercedes_3.jpg"
-              ];
-            } else if (car.name === "VOLKSWAGEN" && car.type === "TOUAREG") {
-              imagePaths = [
-                "/images/touareg_1.jpg",
-                "/images/touareg_2.jpg",
-                "/images/touareg_3.jpg"
-              ];
-            } else if (car.name === "AUDI" && car.type === "A6") {
-              imagePaths = [
-                "/images/audi_a6_1.jpg",
-                "/images/audi_a6_2.jpg",
-                "/images/audi_a6_3.jpg"
-              ];
-            } else if (car.name === "VOLKSWAGEN" && car.type === "GOLF 7") {
-              imagePaths = [
-                "/images/golf7_1.jpg",
-                "/images/golf7_2.jpg",
-                "/images/golf7_3.jpg"
-              ];
-            } else if (car.name === "VOLKSWAGEN" && car.type === "GOLF 6") {
-              imagePaths = [
-                "/images/golf6_1.jpg",
-                "/images/golf6_2.jpg",
-                "/images/golf6_3.jpg"
-              ];
-            } else if (car.name === "AUDI" && car.type === "A3" && car.year === 2011) {
-              imagePaths = [
-                "/images/audi_a3_2011_1.jpg",
-                "/images/audi_a3_2011_2.jpg",
-                "/images/audi_a3_2011_3.jpg"
-              ];
-            } else if (car.name === "AUDI" && car.type === "A3" && car.year === 2013) {
-              imagePaths = [
-                "/images/audi_a3_2013_1.jpg",
-                "/images/audi_a3_2013_2.jpg",
-                "/images/audi_a3_2013_3.jpg"
-              ];
-            } else if (car.name === "VOLKSWAGEN" && car.type === "GOLF 6+") {
-              imagePaths = [
-                "/public/images/golf6plus_1.jpg",
-                "/public/images/golf6plus_2.jpg",
-                "/public/images/golf6plus_3.jpg"
-              ];
-            } else if (car.name === "VOLKSWAGEN" && car.type === "GOLF 5") {
-              imagePaths = [
-                "/public/images/golf5_1.jpg",
-                "/public/images/golf5_2.jpg",
-                "/public/images/golf5_3.jpg"
-              ];
-            } else {
-              // Default image paths for other cars
-              imagePaths = [
-                ${car.name.toLowerCase().replace(/ /g, "_")}_1.jpg,
-                ${car.name.toLowerCase().replace(/ /g, "_")}_2.jpg,
-                ${car.name.toLowerCase().replace(/ /g, "_")}_3.jpg
-              ];
-            }
+                let imagePaths;
+                if (car.name === "PORSCHE") {
+                    imagePaths = [
+                        "/public/images/porsche_1.jpg",
+                        "/public/images/porsche_2.jpg",
+                        "/public/images/porsche_3.jpg"
+                    ];
+                } else if (car.name === "MERCEDES-BENZ") {
+                    imagePaths = [
+                        "/public/images/mercedes_1.jpg",
+                        "/public/images/mercedes_2.jpg",
+                        "/public/images/mercedes_3.jpg"
+                    ];
+                } else if (car.name === "VOLKSWAGEN" && car.type === "TOUAREG") {
+                    imagePaths = [
+                        "/public/images/touareg_1.jpg",
+                        "/public/images/touareg_2.jpg",
+                        "/public/images/touareg_3.jpg"
+                    ];
+                } else {
+                    imagePaths = [
+                        `${car.name.toLowerCase().replace(/ /g, "_")}_1.jpg`,
+                        `${car.name.toLowerCase().replace(/ /g, "_")}_2.jpg`,
+                        `${car.name.toLowerCase().replace(/ /g, "_")}_3.jpg`
+                    ];
+                }
 
-            carItem.innerHTML = 
-              <div class="car-gallery">
-                <div class="gallery-container">
-                  <img src="${imagePaths[0]}" alt="${car.name} ${car.type}" class="gallery-img active">
-                  <img src="${imagePaths[1]}" alt="${car.name} ${car.type}" class="gallery-img">
-                  <img src="${imagePaths[2]}" alt="${car.name} ${car.type}" class="gallery-img">
-                  
-                  <button class="gallery-nav prev" onclick="changeImage(this, -1)">
-                    <i class="fas fa-chevron-left"></i>
-                  </button>
-                  <button class="gallery-nav next" onclick="changeImage(this, 1)">
-                    <i class="fas fa-chevron-right"></i>
-                  </button>
-                  
-                  <div class="gallery-dots">
-                    <span class="dot active" onclick="showImage(this, 0)"></span>
-                    <span class="dot" onclick="showImage(this, 1)"></span>
-                    <span class="dot" onclick="showImage(this, 2)"></span>
-                  </div>
-                </div>
-              </div>
-              <div class="car-details">
-                <h3>${car.name} ${car.type}</h3>
-                <div class="specs">
-                  <p><i class="fas fa-car"></i> <strong>Marka:</strong> ${car.brand}</p>
-                  <p><i class="fas fa-info-circle"></i> <strong>Modeli:</strong> ${car.type}</p>
-                  <p><i class="fas fa-calendar"></i> <strong>Viti:</strong> ${car.year}</p>
-                  <p><i class="fas fa-star"></i> <strong>Vlerësimi:</strong> ${car.rating}</p>
-                </div>
-                <div class="price">€${car.price}<span>/ditë</span></div>
-                <button class="btn reserve-btn" onclick="openReservationModal('${car.name}', '${car.type}', ${car.price})">
-                  Rezervo Tani
-                  <i class="fas fa-arrow-right"></i>
-                </button>
-              </div>
-            ;
+                carItem.innerHTML = `
+                    <div class="car-gallery">
+                        <div class="gallery-container">
+                            <img src="${imagePaths[0]}" alt="${car.name} ${car.type}" class="gallery-img active">
+                            <img src="${imagePaths[1]}" alt="${car.name} ${car.type}" class="gallery-img">
+                            <img src="${imagePaths[2]}" alt="${car.name} ${car.type}" class="gallery-img">
+                            <button class="gallery-nav prev">‹</button>
+                            <button class="gallery-nav next">›</button>
+                        </div>
+                        <div class="gallery-dots">
+                            <div class="dot active"></div>
+                            <div class="dot"></div>
+                            <div class="dot"></div>
+                        </div>
+                    </div>
+                    <div class="car-info">
+                        <h3>${car.name} ${car.type} (${car.year})</h3>
+                        <p><strong>Çmimi:</strong> €${car.price} për ditë</p>
+                        <p><strong>Vlerësimi:</strong> ${car.rating} / 5</p>
+                        <button class="reserve-btn" onclick="openReservationModal('${car.name} ${car.type}')">
+                            Rezervo <i class="fas fa-calendar-check"></i>
+                        </button>
+                    </div>
+                `;
 
-            carListContainer.appendChild(carItem);
-          });
+                carListContainer.appendChild(carItem);
+            });
         }
 
-        // Function to change image
-        function changeImage(button, direction) {
-          const gallery = button.closest('.gallery-container');
-          const images = gallery.querySelectorAll('.gallery-img');
-          const dots = gallery.querySelectorAll('.dot');
-          let activeIndex = Array.from(images).findIndex(img => img.classList.contains('active'));
-          
-          // Remove active class from current image and dot
-          images[activeIndex].classList.remove('active');
-          dots[activeIndex].classList.remove('active');
-          
-          // Calculate new index
-          activeIndex = (activeIndex + direction + images.length) % images.length;
-          
-          // Add active class to new image and dot
-          images[activeIndex].classList.add('active');
-          dots[activeIndex].classList.add('active');
-        }
-
-        // Function to show specific image
-        function showImage(dot, index) {
-          const gallery = dot.closest('.gallery-container');
-          const images = gallery.querySelectorAll('.gallery-img');
-          const dots = gallery.querySelectorAll('.dot');
-          
-          // Remove active class from all images and dots
-          images.forEach(img => img.classList.remove('active'));
-          dots.forEach(d => d.classList.remove('active'));
-          
-          // Add active class to selected image and dot
-          images[index].classList.add('active');
-          dots[index].classList.add('active');
-        }
-
-        // Funksioni për renditjen e makinave
-        function sortCars(criteria) {
-            let sortedCars = [...cars]; // Kopjo listën origjinale për të mos e ndryshuar atë
-
-            if (criteria === "price-asc") {
-                sortedCars.sort((a, b) => a.price - b.price); // Rendit sipas çmimit në rritje
-            } else if (criteria === "price-desc") {
-                sortedCars.sort((a, b) => b.price - a.price); // Rendit sipas çmimit në zbritje
-            } else if (criteria === "rating") {
-                sortedCars.sort((a, b) => b.rating - a.rating); // Rendit sipas vlerësimit
-            }
-
-            renderCars(sortedCars); // Rifresko listën e makinave
-        }
-
-        // Event listener for sorting
-        document.getElementById("sortFilter").addEventListener("change", (e) => {
-          const sortCriteria = e.target.value;
-          sortCars(sortCriteria);
-        });
-
-        // Initial render
         renderCars(cars);
-
-        // Function to open reservation modal
-        function openReservationModal(carName, carModel, carPrice) {
-          document.getElementById('carName').value = carName;
-          document.getElementById('carModel').value = carModel;
-          document.getElementById('carPrice').value = carPrice;
-          document.getElementById('reservationModal').style.display = 'flex';
+        
+        function openReservationModal(carName) {
+            const modal = document.getElementById('reservationModal');
+            modal.style.display = 'flex';
+            document.getElementById('carName').innerText = carName;
         }
 
-        // Function to close modal
-        function closeModal() {
-          document.getElementById('reservationModal').style.display = 'none';
-        }
-
-        // Function to send WhatsApp message
-        function sendWhatsAppMessage(event) {
-          event.preventDefault();
-          const carName = document.getElementById('carName').value;
-          const carModel = document.getElementById('carModel').value;
-          const carPrice = document.getElementById('carPrice').value;
-          const clientName = document.getElementById('clientName').value;
-          const clientPhone = document.getElementById('clientPhone').value;
-
-          const message = Përshëndetje, unë jam i interesuar të rezervoj makinën ${carName} ${carModel} për ${carPrice}€ / ditë. Emri im është ${clientName} dhe numri im i telefonit është ${clientPhone}.;
-          const whatsappUrl = https://wa.me/355684055754?text=${encodeURIComponent(message)};
-
-          window.open(whatsappUrl, '_blank');
+        function closeReservationModal() {
+            document.getElementById('reservationModal').style.display = 'none';
         }
     </script>
-
-    <!-- Modal Rezervimi -->
-    <div class="modal" id="reservationModal">
-        <div class="modal-content">
-            <span class="close-btn" onclick="closeModal()">&times;</span>
-            <h2>Rezervo Makinën</h2>
-            <form id="reservationForm" onsubmit="sendWhatsAppMessage(event)">
-                <input type="hidden" id="carName">
-                <input type="hidden" id="carModel">
-                <input type="hidden" id="carPrice">
-                
-                <div class="form-group">
-                    <label for="clientName">Emri i plotë</label>
-                    <input type="text" id="clientName" required placeholder="Shkruani emrin tuaj">
-                </div>
-                
-                <div class="form-group">
-                    <label for="clientPhone">Numri i telefonit</label>
-                    <input type="tel" id="clientPhone" required placeholder="Shkruani numrin tuaj të telefonit">
-                </div>
-                
-                <button type="submit" class="submit-btn">Dërgo</button>
-            </form>
-        </div>
-    </div>
 </body>
 </html>
