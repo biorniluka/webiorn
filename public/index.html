@@ -22,6 +22,9 @@
             padding: 15px;
             margin-bottom: 20px;
             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
         .reserve-btn {
@@ -111,11 +114,13 @@
             justify-content: center;
             align-items: center;
             position: relative;
+            width: 100%;
+            max-width: 400px;
         }
 
         .gallery-img {
             max-width: 100%;
-            max-height: 400px;
+            max-height: 300px;
             display: none;
         }
 
@@ -255,64 +260,22 @@
 
     <script>
         const cars = [
-            { name: "PORSCHE", brand: "PORSCHE", type: "CAYENE", year: 2015, price: 75, rating: 4.9 },
-            { name: "MERCEDES-BENZ", brand: "MERCEDES-BENZ", type: "ML", year: 2015, price: 70, rating: 4.9 },
-            { name: "VOLKSWAGEN", brand: "VOLKSWAGEN", type: "TOUAREG", year: 2014, price: 65, rating: 4.8 },
-            { name: "AUDI", brand: "AUDI", type: "A6", year: 2014, price: 60, rating: 4.7 },
-            { name: "VOLKSWAGEN", brand: "VOLKSWAGEN", type: "GOLF 7", year: 2016, price: 40, rating: 4.8 },
-            { name: "VOLKSWAGEN", brand: "VOLKSWAGEN", type: "GOLF 6", year: 2012, price: 30, rating: 4.7 },
-            { name: "AUDI", brand: "AUDI", type: "A3", year: 2011, price: 28, rating: 4.5 },
-            { name: "AUDI", brand: "AUDI", type: "A3", year: 2013, price: 35, rating: 4.7 },
-            { name: "VOLKSWAGEN", brand: "VOLKSWAGEN", type: "GOLF 6+", year: 2010, price: 28, rating: 4.0 },
-            { name: "VOLKSWAGEN", brand: "VOLKSWAGEN", type: "GOLF 5", year: 2010, price: 28, rating: 3.9 },
+            { name: "PORSCHE", brand: "PORSCHE", type: "CAYENNE", year: 2022 },
+            { name: "AUDI", type: "A3", year: 2013 },
+            { name: "AUDI", type: "A3", year: 2011 },
+            { name: "VOLKSWAGEN", type: "GOLF 6+" },
+            { name: "VOLKSWAGEN", type: "GOLF 5" },
+            { name: "VOLKSWAGEN", type: "GOLF 7" },
+            { name: "MERCEDES", type: "M CLASS", year: 2019 },
+            { name: "VOLKSWAGEN", type: "TOUAREG" },
         ];
 
-        function renderCars(carList) {
+        function renderCars(cars) {
             const carListContainer = document.getElementById("carList");
-            carListContainer.innerHTML = ""; // Clear existing cars
 
-            carList.forEach((car) => {
-                const carItem = document.createElement("div");
-                carItem.classList.add("car-item");
-
-                let imagePaths;
-                if (car.name === "PORSCHE") {
-                    imagePaths = [
-                        "https://github.com/biorniluka/webiorn/blob/main/public/images/porsche_1.jpg?raw=true",
-                        "https://github.com/biorniluka/webiorn/blob/main/public/images/porsche_2.jpg?raw=true",
-                        "https://github.com/biorniluka/webiorn/blob/main/public/images/porsche_3.jpg?raw=true"
-                    ];
-                } else if (car.name === "MERCEDES-BENZ") {
-                    imagePaths = [
-                        "https://github.com/biorniluka/webiorn/blob/main/public/images/mercedes_1.jpg?raw=true",
-                        "https://github.com/biorniluka/webiorn/blob/main/public/images/mercedes_2.jpg?raw=true",
-                        "https://github.com/biorniluka/webiorn/blob/main/public/images/mercedes_3.jpg?raw=true"
-                    ];
-                } else if (car.name === "VOLKSWAGEN" && car.type === "TOUAREG") {
-                    imagePaths = [
-                        "https://github.com/biorniluka/webiorn/blob/main/public/images/touareg_1.jpg?raw=true",
-                        "https://github.com/biorniluka/webiorn/blob/main/public/images/touareg_2.jpg?raw=true",
-                        "https://github.com/biorniluka/webiorn/blob/main/public/images/touareg_3.jpg?raw=true"
-                    ];
-                } else if (car.name === "AUDI" && car.type === "A6") {
-                    imagePaths = [
-                        "https://github.com/biorniluka/webiorn/blob/main/public/images/audi_a6_1.jpg?raw=true",
-                        "https://github.com/biorniluka/webiorn/blob/main/public/images/audi_a6_2.jpg?raw=true",
-                        "https://github.com/biorniluka/webiorn/blob/main/public/images/audi_a6_3.jpg?raw=true"
-                    ];
-                } else if (car.name === "VOLKSWAGEN" && car.type === "GOLF 7") {
-                    imagePaths = [
-                        "https://github.com/biorniluka/webiorn/blob/main/public/images/golf7_1.jpg?raw=true",
-                        "https://github.com/biorniluka/webiorn/blob/main/public/images/golf7_2.jpg?raw=true",
-                        "https://github.com/biorniluka/webiorn/blob/main/public/images/golf7_3.jpg?raw=true"
-                    ];
-                } else if (car.name === "VOLKSWAGEN" && car.type === "GOLF 6") {
-                    imagePaths = [
-                        "https://github.com/biorniluka/webiorn/blob/main/public/images/golf6_1.jpg?raw=true",
-                        "https://github.com/biorniluka/webiorn/blob/main/public/images/golf6_2.jpg?raw=true",
-                        "https://github.com/biorniluka/webiorn/blob/main/public/images/golf6_3.jpg?raw=true"
-                    ];
-                } else if (car.name === "AUDI" && car.type === "A3" && car.year === 2011) {
+            cars.forEach(car => {
+                let imagePaths = [];
+                if (car.name === "AUDI" && car.type === "A3" && car.year === 2011) {
                     imagePaths = [
                         "https://github.com/biorniluka/webiorn/blob/main/public/images/audi_a3_2011_1.jpg?raw=true",
                         "https://github.com/biorniluka/webiorn/blob/main/public/images/audi_a3_2011_2.jpg?raw=true",
@@ -324,19 +287,24 @@
                         "https://github.com/biorniluka/webiorn/blob/main/public/images/audi_a3_2013_2.jpg?raw=true",
                         "https://github.com/biorniluka/webiorn/blob/main/public/images/audi_a3_2013_3.jpg?raw=true"
                     ];
-                } else if (car.name === "VOLKSWAGEN" && car.type === "GOLF 6+") {
+                } else if (car.name === "VOLKSWAGEN" && car.type === "GOLF 7") {
                     imagePaths = [
-                        "https://github.com/biorniluka/webiorn/blob/main/public/images/golf6plus_1.jpg?raw=true",
-                        "https://github.com/biorniluka/webiorn/blob/main/public/images/golf6plus_2.jpg?raw=true",
-                        "https://github.com/biorniluka/webiorn/blob/main/public/images/golf6plus_3.jpg?raw=true"
-                    ];
-                } else if (car.name === "VOLKSWAGEN" && car.type === "GOLF 5") {
-                    imagePaths = [
-                        "https://github.com/biorniluka/webiorn/blob/main/public/images/golf5_1.jpg?raw=true",
-                        "https://github.com/biorniluka/webiorn/blob/main/public/images/golf5_2.jpg?raw=true",
-                        "https://github.com/biorniluka/webiorn/blob/main/public/images/golf5_3.jpg?raw=true"
+                        "https://github.com/biorniluka/webiorn/blob/main/public/images/golf7_1.jpg?raw=true",
+                        "https://github.com/biorniluka/webiorn/blob/main/public/images/golf7_2.jpg?raw=true",
+                        "https://github.com/biorniluka/webiorn/blob/main/public/images/golf7_3.jpg?raw=true"
                     ];
                 }
+
+                const carItem = document.createElement("div");
+                carItem.classList.add("car-card");
+
+                const carTitle = document.createElement("h3");
+                carTitle.textContent = `${car.name} ${car.type} (${car.year || "N/A"})`;
+                carItem.appendChild(carTitle);
+
+                const carDescription = document.createElement("p");
+                carDescription.textContent = "Makina luksoze për çdo udhëtim.";
+                carItem.appendChild(carDescription);
 
                 const carImageContainer = document.createElement("div");
                 carImageContainer.classList.add("car-gallery");
@@ -375,7 +343,7 @@
                 });
 
                 carItem.appendChild(galleryDots);
-                
+
                 prevBtn.addEventListener("click", () => {
                     showPreviousImage(galleryContainer, galleryDots);
                 });
