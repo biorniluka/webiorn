@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rent a Car Luka - Makina me qera me çmime të volitshme</title>
+    <title>Rent a Car Luka - Makina me qera me çmime të manhitshme</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -253,131 +253,30 @@
         </div>
     </footer>
 
-    <script>
-        const cars = [
-            { name: "PORSCHE", brand: "PORSCHE", type: "CAYENE", year: 2015, price: 75, rating: 4.9 },
-            { name: "MERCEDES-BENZ", brand: "MERCEDES-BENZ", type: "ML", year: 2015, price: 70, rating: 4.9 },
-            { name: "VOLKSWAGEN", brand: "VOLKSWAGEN", type: "TOUAREG", year: 2014, price: 65, rating: 4.8 },
-            { name: "AUDI", brand: "AUDI", type: "A6", year: 2014, price: 60, rating: 4.7 },
-            { name: "VOLKSWAGEN", brand: "VOLKSWAGEN", type: "GOLF 7", year: 2016, price: 40, rating: 4.8 },
-            { name: "VOLKSWAGEN", brand: "VOLKSWAGEN", type: "GOLF 6", year: 2012, price: 30, rating: 4.7 },
-            { name: "AUDI", brand: "AUDI", type: "A3", year: 2011, price: 28, rating: 4.5 },
-            { name: "AUDI", brand: "AUDI", type: "A3", year: 2013, price: 35, rating: 4.7 },
-            { name: "VOLKSWAGEN", brand: "VOLKSWAGEN", type: "GOLF 6+", year: 2010, price: 28, rating: 4.0 },
-            { name: "VOLKSWAGEN", brand: "VOLKSWAGEN", type: "GOLF 5", year: 2010, price: 28, rating: 3.9 },
-        ];
-
-        function renderCars(carList) {
-            const carListContainer = document.getElementById("carList");
-            carListContainer.innerHTML = ""; // Clear existing cars
-
-            carList.forEach((car) => {
-                const carItem = document.createElement("div");
-                carItem.classList.add("car-item");
-
-                let imagePaths;
-                if (car.name === "PORSCHE") {
-                    imagePaths = [
-                        "/images/porsche_1.jpg",
-                        "/images/porsche_2.jpg",
-                        "/images/porsche_3.jpg"
-                    ];
-                } else if (car.name === "MERCEDES-BENZ") {
-                    imagePaths = [
-                        "images/mercedes_1.jpg",
-                        "images/mercedes_2.jpg",
-                        "images/mercedes_3.jpg"
-                    ];
-                } else if (car.name === "VOLKSWAGEN" && car.type === "TOUAREG") {
-                    imagePaths = [
-                        "images/touareg_1.jpg",
-                        "images/touareg_2.jpg",
-                        "images/touareg_3.jpg"
-                    ];
-                } else if (car.name === "AUDI" && car.type === "A3" && car.year === 2011) {
-                    imagePaths = [
-                        "images/audi_a3_2011_1.jpg",
-                        "images/audi_a3_2011_2.jpg",
-                        "images/audi_a3_2011_3.jpg"
-                    ];
-                } else if (car.name === "AUDI" && car.type === "A3" && car.year === 2013) {
-                    imagePaths = [
-                        "images/audi_a3_2013_1.jpg",
-                        "images/audi_a3_2013_2.jpg",
-                        "images/audi_a3_2013_3.jpg"
-                    ];
-                } else if (car.name === "AUDI" && car.type === "A6") {
-                    imagePaths = [
-                        "images/audi_a6_1.jpg",
-                        "images/audi_a6_2.jpg",
-                        "images/audi_a6_3.jpg"
-                    ];
-                } else if (car.name === "VOLKSWAGEN" && car.type === "GOLF 5") {
-                    imagePaths = [
-                        "images/golf5_1.jpg",
-                        "images/golf5_2.jpg",
-                        "images/golf5_3.jpg"
-                    ];
-                } else if (car.name === "VOLKSWAGEN" && car.type === "GOLF 6") {
-                    imagePaths = [
-                        "images/golf6_1.jpg",
-                        "images/golf6_2.jpg",
-                        "images/golf6_3.jpg"
-                    ];
-                } else if (car.name === "VOLKSWAGEN" && car.type === "GOLF 6+") {
-                    imagePaths = [
-                        "images/golf6plus_1.jpg",
-                        "images/golf6plus_2.jpg",
-                        "images/golf6plus_3.jpg"
-                    ];
-                } else if (car.name === "VOLKSWAGEN" && car.type === "GOLF 7") {
-                    imagePaths = [
-                        "images/golf7_1.jpg",
-                        "images/golf7_2.jpg",
-                        "images/golf7_3.jpg"
-                    ];
-                }
-
-                carItem.innerHTML = `
-                    <div class="car-gallery">
-                        <div class="gallery-container">
-                            <img src="${imagePaths[0]}" alt="${car.name} ${car.type}" class="gallery-img active">
-                            <img src="${imagePaths[1]}" alt="${car.name} ${car.type}" class="gallery-img">
-                            <img src="${imagePaths[2]}" alt="${car.name} ${car.type}" class="gallery-img">
-                            <button class="gallery-nav prev">‹</button>
-                            <button class="gallery-nav next">›</button>
-                        </div>
-                        <div class="gallery-dots">
-                            <div class="dot active"></div>
-                            <div class="dot"></div>
-                            <div class="dot"></div>
-                        </div>
-                    </div>
-                    <div class="car-info">
-                        <h3>${car.name} ${car.type} (${car.year})</h3>
-                        <p><strong>Çmimi:</strong> €${car.price} për ditë</p>
-                        <p><strong>Vlerësimi:</strong> ${car.rating} / 5</p>
-                        <button class="reserve-btn" onclick="openReservationModal('${car.name} ${car.type}')">
-                            Rezervo <i class="fas fa-calendar-check"></i>
-                        </button>
-                    </div>
-                `;
-
-                carListContainer.appendChild(carItem);
-            });
-        }
-
-        renderCars(cars);
-
-        function openReservationModal(carName) {
-            const modal = document.getElementById('reservationModal');
-            modal.style.display = 'flex';
-            document.getElementById('carName').innerText = carName;
-        }
-
-        function closeReservationModal() {
-            document.getElementById('reservationModal').style.display = 'none';
-        }
-    </script>
+    <!-- Reservation Modal -->
+    <div id="reservationModal" class="modal" style="display:none;">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeReservationModal()">&times;</span>
+            <h2>Rezervo Makinen</h2>
+            <p id="carName" style="font-weight:bold;"></p>
+            <form id="reservationForm">
+                <div class="form-group">
+                    <label for="name">Emri juaj</label>
+                    <input type="text" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="phone">Telefoni</label>
+                    <input type="tel" name="phone" required>
+                </div>
+                <div class="form-group">
+                    <label for="date">Data e rezervimit</label>
+                    <input type="date" name="date" required>
+                </div>
+                <button type="submit" class="submit-btn">Dërgo Rezervimin</button>
+            </form>
+            <div id="reservationMessage" style="margin-top:10px;color:green;"></div>
+        </div>
+    </div>
+    <script src="script.js" defer></script>
 </body>
 </html>
